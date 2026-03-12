@@ -4,6 +4,8 @@ static const Block blocks[] = {
 
     {" ", "sensors | grep CPU | awk '{print $2}'", 30, 0},
 
+    {"", "/home/jamie/.local/src/someblocks/scripts/weather", 300, 0},
+
     {"", "/home/jamie/.local/src/someblocks/scripts/battery", 60, 0},
 
     {"", "date '+%b %d %I:%M%p'", 60, 0},
