@@ -1,0 +1,37 @@
+#!/bin/bash
+status=$(acpi | awk -F ': ' '{print $2}')
+
+charging=$(awk '{print $1}' <<< "$status" | sed 's/,//')
+percentage=$(awk '{print $2}' <<< "$status" | sed 's/%,//')
+remainingTime=$(awk '{print $3}' <<< "$status" | sed 's/%,//')
+battery="N/A"
+
+if (($percentage <  10)); then
+  battery="󰂎"
+elif (($percentage <  20)); then
+  battery="󰁺"
+elif (($percentage <  30)); then
+  battery="󰁻"
+elif (($percentage <  40)); then
+  battery="󰁼"
+elif (($percentage <  50)); then
+  battery="󰁽"
+elif (($percentage <  60)); then
+  battery="󰁾"
+elif (($percentage <  70)); then
+  battery="󰁿"
+elif (($percentage <  80)); then
+  battery="󰂀"
+elif (($percentage <  90)); then
+  battery="󰂁"
+elif (($percentage <  95)); then
+  battery="󰂂"
+else
+  battery="󰁹"
+fi
+
+if [ $charging = 'Charging' ]; then
+  echo $battery $percentage% "- Charging"
+else
+  echo $battery $percentage%
+fi
