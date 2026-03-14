@@ -2,7 +2,7 @@ static const Block blocks[] = {
     /*Icon*/ /*Command*/ /*Update Interval*/ /*Update Signal*/
     {"󰍛 ", "free -h | awk '/^Mem/ { print $3 }' | sed s/i//g", 30, 0},
 
-    {" ", "sensors | grep CPU | awk '{print $2}'", 30, 0},
+    {"🌡️", "sensors | grep CPU | awk '{print $2}' | sed s/+//g", 30, 0},
 
     {"", "/home/jamie/.local/src/someblocks/scripts/weather", 300, 0},
 
