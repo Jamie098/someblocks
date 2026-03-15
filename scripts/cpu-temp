@@ -1,0 +1,7 @@
+#!/bin/bash
+
+temp=$(sensors | grep CPU | awk '{print $2}' | sed s/+//g)
+if [ "$temp" == "" ]; then
+  temp=$(sensors | grep 'Package id 0' | awk '{print $4}' | sed s/+//g)
+fi
+echo 🌡️$temp

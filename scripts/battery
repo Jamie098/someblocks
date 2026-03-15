@@ -1,4 +1,8 @@
 #!/bin/bash
+
+bat=/sys/class/power_supply/BAT0
+[ -d "$bat" ] || exit 0
+
 status=$(acpi | awk -F ': ' '{print $2}')
 
 charging=$(awk '{print $1}' <<< "$status" | sed 's/,//')
